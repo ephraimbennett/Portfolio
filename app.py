@@ -50,6 +50,16 @@ def contact():
     send_contact_email(name, email, message)
     return redirect(url_for("home"))
 
+@app.get("/__debug/static-list")
+def static_list():
+    import os
+    files = []
+    for base, _, fs in os.walk(app.static_folder):
+        for f in fs:
+            rel = os.path.relpath(os.path.join(base, f), app.static_folder)
+            files.append(rel)
+    return {"static_folder": app.static_folder, "files": sorted(files)}
+
 
 if __name__ == "__main__":
     # For local dev only; Cloud Run uses Gunicorn CMD above
