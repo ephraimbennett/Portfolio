@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, abort, url_for, redirect, jsonify
+from flask import Flask, render_template, request, abort, url_for, redirect, jsonify, send_from_directory
 app = Flask(__name__)
 
 import os, smtplib, ssl
@@ -50,15 +50,9 @@ def contact():
     send_contact_email(name, email, message)
     return redirect(url_for("home"))
 
-@app.get("/__debug/static-list")
-def static_list():
-    import os
-    files = []
-    for base, _, fs in os.walk(app.static_folder):
-        for f in fs:
-            rel = os.path.relpath(os.path.join(base, f), app.static_folder)
-            files.append(rel)
-    return {"static_folder": app.static_folder, "files": sorted(files)}
+@app.get("/resume")
+def resume():
+    return send_from_directory(app.static_folder, "Ephraim_Bennett_Resume.pdf")
 
 
 if __name__ == "__main__":
