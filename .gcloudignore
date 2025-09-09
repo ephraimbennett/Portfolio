@@ -1,2 +1,8 @@
-
-!static/ephraim_bennett_resume.pdf
+.gcloudignore
+.git
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
+.env

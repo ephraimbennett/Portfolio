@@ -5,4 +5,4 @@ __pycache__/
 .git
 .gitignore
 .vscode
-!static/ephraim_bennett_resume.pdf
+!static/Ephraim_Bennett_resume.pdf
